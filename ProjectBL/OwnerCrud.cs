@@ -46,18 +46,17 @@ namespace ProjectBL
 
                 return dBContext.FlatOwner.ToList() ;
             }
-            public static Owner? SearchOne(string pname)
-            {
+        public static Owner? SearchOne(string pname)
+        {
 
 
-                var result = dBContext.FlatOwner
-                        .ToList()
-                        .Where(p => p.Name == pname)
-                        .FirstOrDefault();
+            var result = dBContext.FlatOwner
+                    .ToList()
+                    .Where(p => p.Name == pname)
+                    .FirstOrDefault();
 
-                return result ;
-            }
-
+            return result;
+        }
 
 
         }

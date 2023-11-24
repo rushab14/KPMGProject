@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectDAL;
 
@@ -11,9 +12,10 @@ using ProjectDAL;
 namespace ProjectDAL.Migrations
 {
     [DbContext(typeof(ProjectDBContext))]
-    partial class ProjectDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231124095727_v4")]
+    partial class v4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,13 +52,19 @@ namespace ProjectDAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GatePassId"), 1L, 1);
 
-                    b.Property<int?>("FlatNumber")
+                    b.Property<int>("FlatNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OwnerFlatNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("VisitorsName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("GatePassId");
+
+                    b.HasIndex("OwnerFlatNumber");
 
                     b.ToTable("Permission");
                 });
@@ -77,15 +85,21 @@ namespace ProjectDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("facilities")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("gatePasses")
-                        .HasColumnType("int");
-
                     b.HasKey("FlatNumber");
 
                     b.ToTable("FlatOwner");
+                });
+
+            modelBuilder.Entity("ProjectDAL.GatePass", b =>
+                {
+                    b.HasOne("ProjectDAL.Owner", null)
+                        .WithMany("gatePasses")
+                        .HasForeignKey("OwnerFlatNumber");
+                });
+
+            modelBuilder.Entity("ProjectDAL.Owner", b =>
+                {
+                    b.Navigation("gatePasses");
                 });
 #pragma warning restore 612, 618
         }

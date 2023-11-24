@@ -19,11 +19,11 @@ namespace ProjectDAL
 
         }
 
-        public virtual DbSet<Owner> FlatOwner { get; set; } = null;
+        public virtual DbSet<Owner> FlatOwner { get; set; } 
 
-        public virtual DbSet<Facility> Facilities { get; set; } = null;
+        public virtual DbSet<Facility> Facilities { get; set; } 
 
-        public virtual DbSet<GatePass> Permission { get; set; } = null;
+        public virtual DbSet<GatePass> Permission { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

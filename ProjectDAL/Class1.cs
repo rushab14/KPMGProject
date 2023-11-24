@@ -13,7 +13,8 @@ namespace ProjectDAL
         [Phone]
         public string PhoneNumber { get; set; }
 
-        public List<GatePass> gatePasses { get; set; }
+        public int? gatePasses { get; set; }
+        public string? facilities { get; set; }
     }
 
     public class Facility
@@ -21,9 +22,9 @@ namespace ProjectDAL
     {
         [Key]
         public int FacilityId { get; set; }
-        public bool isAvailable { get; set; }
+        public bool  isAvailable { get; set; }
 
-        public string FacilityName { get; set; }   
+        public string  FacilityName { get; set; }   
     }
 
     public class GatePass
@@ -31,8 +32,8 @@ namespace ProjectDAL
     {
         [Key]
         public int GatePassId { get; set; }
-        public int FlatNumber { get; set; }
-        public string VisitorsName { get; set; }
+        public int? FlatNumber { get; set; }
+        public string? VisitorsName { get; set; }
     }
 
 

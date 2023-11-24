@@ -46,13 +46,13 @@ namespace ProjectBL
 
             return dBContext.Facilities.ToList();
         }
-        public static Facility? SearchOne(string pname)
+        public static Facility? SearchOne(string fname)
         {
 
 
             var result = dBContext.Facilities
                     .ToList()
-                    .Where(p => p.FacilityName == pname)
+                    .Where(p => p.FacilityName == fname)
                     .FirstOrDefault();
 
             return result;
