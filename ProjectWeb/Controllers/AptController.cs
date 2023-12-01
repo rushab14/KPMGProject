@@ -43,7 +43,7 @@ namespace ProjectWeb.Controllers
         public IActionResult BookFacility(string facname,int flatId )
         {
              FacilityMgmt.BookFacility(facname, flatId);
-            return Ok("Facility booked for:" + facname + "for the flat id " + flatId);
+            return Ok("Facility booked for:" + facname + "for the flat id " + flatId+"on"+DateTime.Now);
         }
 
         [HttpGet("/SearchbyFName")]
@@ -58,5 +58,12 @@ namespace ProjectWeb.Controllers
             var result = OwnerCrud.SearchOne(pname);
             return Ok(result);
         }
+        [HttpPost("/freeFacility")]
+        public IActionResult FreeFacility(string facname, int flatId)
+        {
+            FacilityMgmt.FreeFacility(facname, flatId);
+            return Ok("Facility freed by:" + facname + "for the flat id " + flatId+ "on"+ DateTime.Now);
+        }
+
     }
 }

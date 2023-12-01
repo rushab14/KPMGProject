@@ -52,5 +52,21 @@ namespace ProjectBL
                 throw new Exception("hello");
             }
         }
+
+        public static void FreeFacility(string FacName, int flatId)
+        {
+            var facility = dBContext.Facilities.Where(f => f.isAvailable && f.FacilityName == FacName).FirstOrDefault();
+            var booker = dBContext.FlatOwner.Where(o => o.FlatNumber == flatId).FirstOrDefault();
+            if (facility != null)
+            {
+                facility.isAvailable = true;
+                booker.facilities = null;
+                dBContext.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("hello");
+            }
+        }
     }
 }
