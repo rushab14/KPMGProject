@@ -13,11 +13,11 @@ namespace ProjectDAL
         {
             
         }
-        public ProjectDBContext(DbContextOptions<ProjectDBContext> options) : base(options) 
-        {
+        //public ProjectDBContext(DbContextOptions<ProjectDBContext> options) : base(options) 
+        //{
         
 
-        }
+        //}
 
         public virtual DbSet<Owner> FlatOwner { get; set; } 
 

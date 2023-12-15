@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjectBL;
 using ProjectDAL;
@@ -8,6 +9,7 @@ using Owner = ProjectDAL.Owner;
 
 namespace ProjectWeb.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class AptController : ControllerBase
@@ -25,6 +27,7 @@ namespace ProjectWeb.Controllers
             var owners = OwnerOperations.GetPeople();
             return Ok(owners);
         }
+        
         [HttpPost("/api/CreateFacility")]
         public IActionResult CreateFacility([FromForm] Facility f) 
         {
